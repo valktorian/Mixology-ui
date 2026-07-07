@@ -1,0 +1,17 @@
+﻿<div class="search-wrap">
+  <input
+    type="text"
+    class="search-input"
+    [placeholder]="placeholder()"
+    [value]="query()"
+    (input)="onInput($event)"
+    (keydown.enter)="submit()"
+  />
+  <mix-icon
+    class="search-btn"
+    [name]="iconName()"
+    [size]="25"
+    [ariaLabel]="ariaLabel()"
+    (click)="submit()"
+  />
+</div>

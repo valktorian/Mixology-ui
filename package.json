@@ -1,0 +1,47 @@
+﻿{
+  "name": "mixology-ui",
+  "version": "0.1.0",
+  "description": "Reusable Angular UI components and CSS-variable themes extracted from the cocktail app.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valktorian/mixology-ui.git"
+  },
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=21.0.0",
+    "@angular/core": ">=21.0.0",
+    "@angular/forms": ">=21.0.0",
+    "@angular/platform-browser": ">=21.0.0",
+    "rxjs": ">=7.8.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^21.2.1",
+    "ng-packagr": "^21.0.0",
+    "typescript": "~5.9.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/fesm2022/mixology-ui.mjs"
+    },
+    "./styles": {
+      "sass": "./src/styles/index.scss",
+      "default": "./src/styles/index.scss"
+    }
+  },
+  "sideEffects": [
+    "**/*.scss"
+  ],
+  "files": [
+    "dist",
+    "src/styles",
+    "README.md"
+  ]
+}

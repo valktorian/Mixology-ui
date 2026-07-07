@@ -1,0 +1,29 @@
+﻿<div class="sorting-actions" [attr.aria-label]="ariaLabel()">
+  <mix-round-button
+    [iconOnly]="true"
+    [active]="sortBy() === 'alcoholic'"
+    (clicked)="alcoholicToggle.emit()"
+  >
+    <mix-icon
+      [name]="
+        alcoholicDir() === 'desc'
+          ? 'arrow-down-short-wide-solid-full'
+          : 'arrow-down-wide-short-solid-full'
+      "
+      [size]="25"
+      [ariaLabel]="alcoholLabel()"
+    />
+  </mix-round-button>
+
+  <mix-round-button
+    [iconOnly]="true"
+    [active]="sortBy() === 'created_at'"
+    (clicked)="createdAtToggle.emit()"
+  >
+    <mix-icon
+      [name]="createdAtDir() === 'desc' ? 'datefns-down' : 'datefns'"
+      [size]="25"
+      [ariaLabel]="dateLabel()"
+    />
+  </mix-round-button>
+</div>
