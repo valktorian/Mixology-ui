@@ -19,10 +19,12 @@ Import the global theme styles once in your app styles file:
 ## Provide config
 
 ```ts
+import { provideHttpClient } from '@angular/common/http';
 import { provideMixologyUi } from 'mixology-ui';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideHttpClient(),
     provideMixologyUi({
       defaultTheme: 'moon',
       iconBasePath: '/assets/icons',
@@ -74,3 +76,4 @@ Then use:
 ## Adding more components
 
 Add new reusable components under `src/lib/components`, then export them from `src/public-api.ts`.
+

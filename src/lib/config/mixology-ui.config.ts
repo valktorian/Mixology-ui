@@ -1,5 +1,4 @@
-﻿import { provideHttpClient } from '@angular/common/http';
-import { EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';
+﻿import { EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';
 
 export type MixologyTheme = 'default' | 'moon' | 'night-meteor' | string;
 
@@ -16,5 +15,6 @@ export const MIXOLOGY_UI_CONFIG = new InjectionToken<MixologyUiConfig>('MIXOLOGY
 });
 
 export function provideMixologyUi(config: MixologyUiConfig = {}): EnvironmentProviders {
-  return makeEnvironmentProviders([provideHttpClient(), { provide: MIXOLOGY_UI_CONFIG, useValue: config }]);
+  return makeEnvironmentProviders([{ provide: MIXOLOGY_UI_CONFIG, useValue: config }]);
 }
+
