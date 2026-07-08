@@ -28,6 +28,7 @@ bootstrapApplication(AppComponent, {
     provideMixologyUi({
       defaultTheme: 'moon',
       iconBasePath: '/assets/icons',
+      iconFallbackName: 'sparkles-solid-full',
     }),
   ],
 });
@@ -45,17 +46,52 @@ theme.clearTheme();
 
 ## Use components
 
-```ts
-import { RoundButton, Icon, AppInput } from 'mixology-ui';
-```
-
 ```html
-<mix-round-button>
+<mix-round-button variant="secondary" size="lg" ariaLabel="Save cocktail">
   <mix-icon name="save" ariaLabel="Save" />
   Save
 </mix-round-button>
 
-<mix-input label="Name" placeholder="Cocktail name" />
+<mix-input
+  label="Name"
+  placeholder="Cocktail name"
+  hint="Used in lists and details pages"
+/>
+
+<mix-search-bar
+  placeholder="Search cocktails"
+  [debounceMs]="300"
+  (submitted)="onSearch($event)"
+/>
+
+<mix-sorting
+  [options]="sortOptions"
+  [value]="sortState"
+  (sortChange)="onSortChange($event)"
+/>
+
+<mix-card variant="elevated">
+  <mix-badge variant="success">Published</mix-badge>
+  <mix-chip [selected]="true">Gin</mix-chip>
+</mix-card>
+
+<mix-empty-state
+  title="No results"
+  description="Try another search or adjust the filters."
+>
+  <mix-round-button variant="primary">Reset filters</mix-round-button>
+</mix-empty-state>
+```
+
+```ts
+import { MixSortOption, MixSortState } from 'mixology-ui';
+
+sortOptions: MixSortOption[] = [
+  { key: 'name', label: 'Sort by name', iconAsc: 'arrow-up-a-z-solid-full', iconDesc: 'arrow-down-z-a-solid-full' },
+  { key: 'createdAt', label: 'Sort by date', iconAsc: 'datefns', iconDesc: 'datefns-down' },
+];
+
+sortState: MixSortState = { key: 'name', direction: 'asc' };
 ```
 
 ## Icons
@@ -71,6 +107,24 @@ Then use:
 
 ```html
 <mix-icon name="save" />
+```
+
+## Customisation
+
+Use `input` / `output` for behaviour and CSS variables for fine styling.
+
+Examples:
+
+```scss
+mix-round-button {
+  --mix-btn-bg: #17324d;
+  --mix-btn-color: white;
+}
+
+mix-input {
+  --mix-input-border: #94a3b8;
+  --mix-input-focus: #bfdbfe;
+}
 ```
 
 ## Adding more components
