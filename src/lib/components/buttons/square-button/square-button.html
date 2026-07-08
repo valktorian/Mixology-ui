@@ -1,3 +1,12 @@
-﻿<button type="button" class="app-btn app-btn-square" (click)="clicked.emit()">
+<button
+  class="app-btn app-btn-square"
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+  [attr.aria-label]="ariaLabel() || null"
+  [attr.title]="title() || null"
+  [class.is-active]="active()"
+  [class.is-loading]="loading()"
+  (click)="handleClick()"
+>
   <ng-content></ng-content>
 </button>

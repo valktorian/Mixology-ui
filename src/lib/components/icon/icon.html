@@ -1,8 +1,9 @@
-﻿<span
+<span
   class="app-icon__svg"
   [style.width.px]="size()"
   [style.height.px]="size()"
   [innerHTML]="svgContentSafe()"
-  [attr.aria-label]="ariaLabel()"
-  role="img"
+  [attr.aria-hidden]="decorative() ? 'true' : null"
+  [attr.aria-label]="decorative() ? null : ariaLabel()"
+  [attr.role]="decorative() ? null : 'img'"
 ></span>

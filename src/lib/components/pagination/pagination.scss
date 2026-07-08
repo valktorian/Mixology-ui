@@ -1,1 +1,11 @@
-﻿/* Styling is intentionally global in mixology-ui/styles. */
+:host {
+  --mix-pagination-gap: 8px;
+  --mix-pagination-btn-bg: var(--surface-solid);
+  --mix-pagination-btn-color: var(--text-color);
+  --mix-pagination-btn-border: var(--gray-100);
+  --mix-pagination-btn-active-bg: var(--primary);
+  --mix-pagination-btn-active-color: var(--surface-solid);
+  --mix-pagination-input-bg: var(--surface-solid);
+
+  display: block;
+}

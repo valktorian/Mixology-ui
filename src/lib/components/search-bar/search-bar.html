@@ -1,17 +1,24 @@
-﻿<div class="search-wrap">
+<div class="search-wrap">
   <input
-    type="text"
+    type="search"
     class="search-input"
+    [attr.aria-label]="ariaLabel()"
     [placeholder]="placeholder()"
     [value]="query()"
+    [disabled]="disabled()"
     (input)="onInput($event)"
     (keydown.enter)="submit()"
   />
-  <mix-icon
-    class="search-btn"
-    [name]="iconName()"
-    [size]="25"
-    [ariaLabel]="ariaLabel()"
-    (click)="submit()"
-  />
+
+  @if (showSubmitButton()) {
+    <button
+      type="button"
+      class="search-submit"
+      [disabled]="disabled()"
+      [attr.aria-label]="buttonAriaLabel()"
+      (click)="submit()"
+    >
+      <mix-icon [name]="iconName()" [size]="20" [decorative]="true" />
+    </button>
+  }
 </div>

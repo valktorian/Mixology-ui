@@ -37,6 +37,11 @@
     color 0.2s ease;
 }
 
+.app-btn:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
 .app-btn-round {
   border-radius: var(--radius-pill);
   padding: 8px 14px;
@@ -80,20 +85,28 @@ mix-header .app-btn-square.is-active {
 }
 
 mix-round-button .app-btn-round {
-  border: var(--rb-border, 1px solid var(--primary));
-  background-color: var(--rb-bg, var(--primary));
-  color: var(--rb-color, var(--surface-solid));
-  border-radius: var(--rb-radius, var(--radius-pill));
+  --mix-btn-bg: var(--primary);
+  --mix-btn-color: var(--surface-solid);
+  --mix-btn-border: 1px solid var(--primary);
+  --mix-btn-radius: var(--radius-pill);
+  --mix-btn-padding: 8px 14px;
+  --mix-btn-hover-bg: var(--dark);
+  --mix-btn-hover-color: var(--rb-color-hover-default, var(--surface-solid));
+
+  border: var(--rb-border, var(--mix-btn-border));
+  background-color: var(--rb-bg, var(--mix-btn-bg));
+  color: var(--rb-color, var(--mix-btn-color));
+  border-radius: var(--rb-radius, var(--mix-btn-radius));
   min-width: var(--rb-min-width, auto);
   width: var(--rb-width, auto);
   height: var(--rb-height, auto);
   min-height: var(--rb-min-height, auto);
-  padding: var(--rb-padding, 8px 14px);
+  padding: var(--rb-padding, var(--mix-btn-padding));
 }
 
 mix-round-button .app-btn-round:hover {
-  background-color: var(--rb-bg-hover, var(--dark));
-  color: var(--rb-color-hover, var(--rb-color-hover-default, var(--surface-solid)));
+  background-color: var(--rb-bg-hover, var(--mix-btn-hover-bg));
+  color: var(--rb-color-hover, var(--mix-btn-hover-color));
 }
 
 mix-round-button.edit-btn {
@@ -120,26 +133,61 @@ mix-cocktails-details mix-round-button.like-btn {
   --rb-min-height: 42px;
 }
 
+mix-round-button[data-variant='secondary'] .app-btn-round,
+mix-square-button[data-variant='secondary'] .app-btn-square {
+  --mix-btn-bg: var(--surface-soft);
+  --mix-btn-color: var(--text-color);
+  --mix-btn-border: 1px solid var(--border-soft);
+  --mix-btn-hover-bg: var(--active-soft);
+  --mix-btn-hover-color: var(--text-color);
+}
+
+mix-round-button[data-variant='ghost'] .app-btn-round,
+mix-square-button[data-variant='ghost'] .app-btn-square {
+  --mix-btn-bg: transparent;
+  --mix-btn-color: var(--text-color);
+  --mix-btn-border: 1px solid transparent;
+  --mix-btn-hover-bg: var(--action-hover-soft);
+  --mix-btn-hover-color: var(--accent-700);
+}
+
+mix-round-button[data-variant='danger'] .app-btn-round,
+mix-square-button[data-variant='danger'] .app-btn-square {
+  --mix-btn-bg: var(--danger-border);
+  --mix-btn-color: var(--surface-solid);
+  --mix-btn-border: 1px solid var(--danger-border);
+  --mix-btn-hover-bg: var(--danger-800);
+  --mix-btn-hover-color: var(--surface-solid);
+}
+
+mix-round-button[data-size='sm'] {
+  --mix-btn-padding: 6px 10px;
+}
+
+mix-round-button[data-size='lg'] {
+  --mix-btn-padding: 10px 18px;
+}
+
 .app-pagination {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--mix-pagination-gap, 8px);
   margin-bottom: 16px;
 }
 
 .app-pagination__pages {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--mix-pagination-gap, 8px);
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .app-pagination__btn {
-  border: 1px solid var(--gray-100);
-  background-color: var(--surface-solid);
-  color: var(--text-color);
+  border: 1px solid var(--mix-pagination-btn-border, var(--gray-100));
+  background-color: var(--mix-pagination-btn-bg, var(--surface-solid));
+  color: var(--mix-pagination-btn-color, var(--text-color));
   border-radius: var(--radius-sm);
   padding: 6px 10px;
   font: inherit;
@@ -154,9 +202,9 @@ mix-cocktails-details mix-round-button.like-btn {
 }
 
 .app-pagination__btn.is-active {
-  background-color: var(--primary);
-  color: var(--surface-solid);
-  border-color: var(--primary);
+  background-color: var(--mix-pagination-btn-active-bg, var(--primary));
+  color: var(--mix-pagination-btn-active-color, var(--surface-solid));
+  border-color: var(--mix-pagination-btn-active-bg, var(--primary));
 }
 
 .app-pagination__btn:disabled {
@@ -173,10 +221,41 @@ mix-cocktails-details mix-round-button.like-btn {
 
 .app-pagination__input {
   width: 72px;
-  border: 1px solid var(--gray-100);
+  border: 1px solid var(--mix-pagination-btn-border, var(--gray-100));
   border-radius: 8px;
   padding: 6px 8px;
   font: inherit;
+  background: var(--mix-pagination-input-bg, var(--surface-solid));
+  color: var(--text-color);
+}
+
+mix-square-button .app-btn-square {
+  --mix-btn-bg: var(--surface-soft);
+  --mix-btn-color: var(--text-color);
+  --mix-btn-border: 1px solid var(--border-soft);
+  --mix-btn-radius: var(--radius-sm);
+  --mix-btn-padding: 8px 10px;
+  --mix-btn-hover-bg: var(--active-soft);
+  --mix-btn-hover-color: var(--text-color);
+
+  border: var(--mix-btn-border);
+  background-color: var(--mix-btn-bg);
+  color: var(--mix-btn-color);
+  border-radius: var(--mix-btn-radius);
+  padding: var(--mix-btn-padding);
+}
+
+mix-square-button .app-btn-square:hover {
+  background-color: var(--mix-btn-hover-bg);
+  color: var(--mix-btn-hover-color);
+}
+
+mix-square-button[data-size='sm'] .app-btn-square {
+  --mix-btn-padding: 6px 8px;
+}
+
+mix-square-button[data-size='lg'] .app-btn-square {
+  --mix-btn-padding: 10px 14px;
 }
 .app-table {
   width: 100%;

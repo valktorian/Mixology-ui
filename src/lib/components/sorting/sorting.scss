@@ -1,9 +1,11 @@
 :host {
-  .sorting-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    width: 100%;
-  }
+  display: block;
+}
+
+.sorting-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
 }

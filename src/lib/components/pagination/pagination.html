@@ -1,49 +1,56 @@
-﻿@if (totalPages() > 1) {
+@if (resolvedTotalPages() > 1) {
   <nav class="app-pagination" [attr.aria-label]="ariaLabel()">
     <div class="app-pagination__pages">
-      <button
-        type="button"
-        class="app-pagination__btn"
-        [disabled]="currentPage() <= 1"
-        (click)="goToPage(currentPage() - 1)"
-      >
-        {{ previousLabel() }}
-      </button>
+      @if (showPrevNext()) {
+        <button
+          type="button"
+          class="app-pagination__btn"
+          [disabled]="currentPage() <= 1"
+          (click)="goToPage(currentPage() - 1)"
+        >
+          {{ previousLabel() }}
+        </button>
+      }
 
       @for (p of visiblePages(); track p) {
         <button
           type="button"
           class="app-pagination__btn"
           [class.is-active]="p === currentPage()"
+          [attr.aria-current]="p === currentPage() ? 'page' : null"
           (click)="goToPage(p)"
         >
           {{ p }}
         </button>
       }
 
-      <button
-        type="button"
-        class="app-pagination__btn"
-        [disabled]="currentPage() >= totalPages()"
-        (click)="goToPage(currentPage() + 1)"
-      >
-        {{ nextLabel() }}
-      </button>
+      @if (showPrevNext()) {
+        <button
+          type="button"
+          class="app-pagination__btn"
+          [disabled]="currentPage() >= resolvedTotalPages()"
+          (click)="goToPage(currentPage() + 1)"
+        >
+          {{ nextLabel() }}
+        </button>
+      }
     </div>
 
-    <label class="app-pagination__jump">
-      <span>{{ goToPageLabel() }}</span>
-      <input
-        #pageInput
-        type="number"
-        class="app-pagination__input"
-        [value]="currentPage()"
-        [min]="1"
-        [max]="totalPages()"
-        (keydown.enter)="commitPageInput(pageInput.value)"
-        (blur)="commitPageInput(pageInput.value)"
-      />
-      <span>/ {{ totalPages() }}</span>
-    </label>
+    @if (showJump()) {
+      <label class="app-pagination__jump">
+        <span>{{ goToPageLabel() }}</span>
+        <input
+          #pageInput
+          type="number"
+          class="app-pagination__input"
+          [value]="currentPage()"
+          [min]="1"
+          [max]="resolvedTotalPages()"
+          (keydown.enter)="commitPageInput(pageInput.value)"
+          (blur)="commitPageInput(pageInput.value)"
+        />
+        <span>/ {{ resolvedTotalPages() }}</span>
+      </label>
+    }
   </nav>
 }

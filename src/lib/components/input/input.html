@@ -1,4 +1,4 @@
-﻿<label class="app-input__field">
+<label class="app-input__field" [attr.for]="id()">
   @if (label()) {
     <span class="app-input__label">
       {{ label() }}
@@ -11,23 +11,47 @@
   @if (multiline()) {
     <textarea
       class="app-input__control app-input__control--textarea"
+      [id]="id()"
+      [attr.name]="name() || null"
       [placeholder]="placeholder()"
       [required]="required()"
       [rows]="rows()"
       [value]="innerValue()"
       [disabled]="disabled()"
+      [readOnly]="readonly()"
+      [attr.maxlength]="maxlength()"
+      [attr.minlength]="minlength()"
+      [attr.aria-invalid]="!!error()"
+      [attr.aria-describedby]="describedBy()"
       (input)="onInput($event)"
+      (blur)="onBlur()"
     ></textarea>
   } @else {
     <input
       class="app-input__control"
+      [id]="id()"
+      [attr.name]="name() || null"
       [type]="type()"
       [placeholder]="placeholder()"
       [required]="required()"
       [autocomplete]="autocomplete()"
       [value]="innerValue()"
       [disabled]="disabled()"
+      [readOnly]="readonly()"
+      [attr.maxlength]="maxlength()"
+      [attr.minlength]="minlength()"
+      [attr.aria-invalid]="!!error()"
+      [attr.aria-describedby]="describedBy()"
       (input)="onInput($event)"
+      (blur)="onBlur()"
     />
+  }
+
+  @if (hint() && !error()) {
+    <span class="app-input__hint" [id]="id() + '-hint'">{{ hint() }}</span>
+  }
+
+  @if (error()) {
+    <span class="app-input__error" [id]="id() + '-error'">{{ error() }}</span>
   }
 </label>

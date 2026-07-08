@@ -1,17 +1,8 @@
-﻿mix-icon {
+mix-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: currentColor;
-  transition:
-    transform 0.2s ease,
-    color 0.2s ease;
-  transform-origin: center;
-
-  &:hover {
-    transform: scale(1.18);
-    color: var(--accent-700);
-  }
 }
 
 mix-icon .app-icon__svg {
